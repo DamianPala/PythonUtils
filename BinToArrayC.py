@@ -7,8 +7,12 @@ Created on 30.01.2017
 import os
 import sys
 
-input_file_name = sys.argv[1]
+if len(sys.argv) > 1:
+    input_file_name = sys.argv[1]
+else:
+    input_file_name = "binfile.bin"
 scritDirectory = os.path.dirname(sys.argv[0])
+
 
 output_file_name = "BinArray.c"
 
@@ -23,6 +27,7 @@ with open(input_file_name, 'r') as f:
 
 output_content = ""
 output_content += "#include \"stdint.h\"\n\n"
+output_content += "static uint32_t BinArraySize = " + str(len(bin_list)) + "\n"
 output_content += "static uint8_t BinArray[] =\n{ \n"
 output_content += "  "
 
@@ -38,5 +43,7 @@ for item in bin_list:
 output_content = output_content[:-2]
 output_content += "\n" 
 output_content += "};"
+
+print output_content
 
 open(scritDirectory + '\\' + output_file_name, 'wb').write(output_content)
