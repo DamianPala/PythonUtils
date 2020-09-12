@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+from distutils.core import setup
+from distutils.extension import Extension
+from Cython.Build import cythonize
+
+
+{{target_name}}_ext = Extension(
+    name='{{target_name}}',
+    sources={{cython_srcs}},
+    libraries={{libs}},
+    library_dirs={{lib_dirs}},
+    include_dirs={{inc_dirs}}
+)
+
+setup(
+    name='{{target_name}}',
+    ext_modules=cythonize(
+        [{{target_name}}_ext], 
+        compiler_directives={'language_level' : '3'},
+        include_path={{inc_path}}
+    ),
+    script_args=['build'], 
+    options={'build': {'build_lib': '{{out_dir}}'}}
+)

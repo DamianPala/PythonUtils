@@ -10,7 +10,7 @@ import sys
 if len(sys.argv) > 1:
     input_file_name = sys.argv[1]
 else:
-    input_file_name = "Nucleo_blink_led_NUCLEO_L476RG.bin"
+    input_file_name = "FSB_TouchReaderManager.bin"
 scritDirectory = os.path.dirname(sys.argv[0])
 
 
@@ -29,7 +29,7 @@ with open(input_file_name, 'rb') as f:
 
 output_content = ""
 output_content += "#include \"stdint.h\"\n\n"
-output_content += "static uint32_t BinArraySize = " + str(len(bin_list)) + "\n"
+output_content += "static uint32_t BinArraySize = " + str(len(bin_list)) + ";\n"
 output_content += "static uint8_t BinArray[] =\n{ \n"
 output_content += "  "
  
